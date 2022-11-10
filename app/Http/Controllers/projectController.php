@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Inertia\Inertia;
+
+use function Termwind\render;
 
 class projectController extends Controller
 {
@@ -13,7 +16,7 @@ class projectController extends Controller
      */
     public function index()
     {
-        return 'project';
+         return Inertia::render('Projects/Index');
     }
 
     /**
@@ -23,8 +26,9 @@ class projectController extends Controller
      */
     public function create()
     {
-        //
-    }
+       
+       return Inertia::render('Projects/create');
+     }
 
     /**
      * Store a newly created resource in storage.

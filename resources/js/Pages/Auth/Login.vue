@@ -33,6 +33,8 @@ const submit = () => {
             {{ status }}
         </div>
 
+
+    <!-- This is form Start-->
         <form @submit.prevent="submit">
             <div>
                 <InputLabel for="email" value="Email" />
@@ -63,5 +65,6 @@ const submit = () => {
                 </PrimaryButton>
             </div>
         </form>
+        <!-- This is form end-->
     </GuestLayout>
 </template>
