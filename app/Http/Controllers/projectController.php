@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\project;
+use App\Models\skill;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
 use function Termwind\render;
@@ -26,8 +29,8 @@ class projectController extends Controller
      */
     public function create()
     {
-       
-       return Inertia::render('Projects/create');
+       $skills = skill::all();
+       return Inertia::render('Projects/create',compact('skills'));
      }
 
     /**
@@ -38,7 +41,23 @@ class projectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'image' =>['required','image'],
+            'name'  =>['required','min:3'],
+         'skill_id' =>['required'],
+        ]);
+
+        if($request->hasFile('image')){
+            $image = $request->file('image')->store('projects');
+            project::create([
+                'skill_id' =>$request->skill_id,
+                'image'    =>$request->name,
+                 'image'   =>$image,
+             'project_url' =>$request->project_url,
+            ]);
+            return redirect::route('projects.index');
+        }
+        return Redirect::back();
     }
 
     /**

@@ -10,11 +10,9 @@
  
          <div class="py-12">
              <div class="max-w-md mx-auto sm:px-6 lg:px-8 bg-white">
-                 <div class="flex justify-end m-1 p-2">
-
                        <!-- This is form Start-->
-    <form class="p-4" @submit.prevent="submit">
-                                <!-- This is form name-->
+         <form class="p-4" @submit.prevent="submit">
+                                        <!-- This is form name-->
             <div>
                 <InputLabel for="name" value="Name" />
                 <TextInput 
@@ -36,14 +34,13 @@
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                <PrimaryButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                <PrimaryButton
+                 class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                    Store
                 </PrimaryButton>
             </div>
-     </form>
-        <!-- This is form end-->
-                    
-                 </div>
+         </form>
+        <!-- This is form end-->   
              </div>
          </div>
      </AuthenticatedLayout>
