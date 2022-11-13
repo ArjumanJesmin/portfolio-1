@@ -1,28 +1,28 @@
 <template>
-    <Head title = "New Skill"/>
- 
+    <Head title="New Skill" />
     <AuthenticatedLayout>
-         <template #header>
-             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-              New Skill
-             </h2>
-         </template>
- 
+       <template #header>
+        <h2 class="font-semibold text-xl text-gray-800 leading-light">
+            New Skill
+        </h2>
+       </template> 
+
          <div class="py-12">
              <div class="max-w-md mx-auto sm:px-6 lg:px-8 bg-white">
                        <!-- This is form Start-->
          <form class="p-4" @submit.prevent="submit">
-                                        <!-- This is form name-->
             <div>
                 <InputLabel for="name" value="Name" />
                 <TextInput 
                 id="name" 
                 type="text" 
-                class="mt-1 block w-full" v-model="form.name"
+                class="mt-1 block w-full"
+                 v-model="form.name"
                  autofocus autocomplete="username" />
                 <InputError class="mt-2" :message="form.errors.name" />
             </div>
-                                <!-- This is form image-->
+
+                    <!-- This is form image-->
             <div class="mt-2">
                 <InputLabel for="image" value="Image" />
                 <TextInput 
@@ -63,6 +63,3 @@ const submit = () => {
     form.post(route('skills.store'));
 };
  </script>
- 
-
- 

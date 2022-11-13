@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\SkillResource;
 use App\Models\skill;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -16,7 +17,8 @@ class skillController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Skills/Index');
+        $skills = SkillResource::collection(skill::all()) ;
+        return Inertia::render('Skills/Index',compact('skills'));
 
     }
 
@@ -36,24 +38,26 @@ class skillController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,)
     {
         $request->validate([
-            'image' =>['required','image'],
-            'name' =>['required','min:3'],
+            'image' => ['required','image'],
+            'name'  => ['required','min:3'],
         ]);
 
         if($request->hasFile('image')){
             $image = $request->file('image')->store('skills');
-            skill::create([
-                'image'=>$request->name,
-                 'image'=>$image,
+
+            Skill::create([
+                  'name'  =>$request->name,
+                 'image'  =>$image,  
             ]);
             return Redirect::route('skills.index');
         }
         return Redirect::back();
     }
-
+    
+    
     /**
      * Display the specified resource.
      *
@@ -71,9 +75,9 @@ class skillController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Skill $skill)
     {
-        //
+        return Inertia::render('Skill/Edit',compact('skill'));
     }
 
     /**
