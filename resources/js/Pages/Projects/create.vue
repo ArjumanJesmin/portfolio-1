@@ -26,8 +26,9 @@
                   border-gray-300
                   focus:outline-none focus:ring-indigo-500 focus:border-indigo-500
                   sm:text-5m rounded-md">
-                    <option v-for="skill in skills" :key="skill.id" value="skill.id">{{ skill.name }}</option>
+                    <option v-for="skill in skills" :key="skill.id" value="skill.id">{{skill.name }}</option>
                 </select>
+                <InputError class="mt-2" :message="form.errors.skill_id" />
             </div>
                           <!-- This is form name-->
             <div>
@@ -82,7 +83,7 @@ import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 
 defineProps({
-    skills: Array 
+    skills: Array,
 });
 
 const form = useForm({

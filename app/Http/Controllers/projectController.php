@@ -7,6 +7,7 @@ use App\Models\project;
 use App\Models\skill;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 use function Termwind\render;
@@ -32,7 +33,7 @@ class projectController extends Controller
     public function create()
     {
        $skills = skill::all();
-       return Inertia::render('Projects/create',compact('skills'));
+       return Inertia::render('Projects/create',compact('skills'))->with('message','Project Created successfully.');
      }
 
     /**
@@ -51,13 +52,14 @@ class projectController extends Controller
 
         if($request->hasFile('image')){
             $image = $request->file('image')->store('projects');
+
             project::create([
                 'skill_id' =>$request->skill_id,
                  'name'    =>$request->name,
                  'image'   =>$image,
              'project_url' =>$request->project_url,
             ]);
-            return redirect::route('projects.index');
+            return redirect::route('projects.index')->with('message','Project Created successfully.');
         }
         return Redirect::back();
     }
@@ -94,9 +96,25 @@ class projectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, project $project)
     {
-        //
+        $image = $project->image;
+
+        $request->validate([
+            'name'  =>['required','min:3'],
+         'skill_id' =>['required'],
+        ]);
+        if($request->hasFile('image')){
+            Storage::delete($project->image);
+            $image = $request->file('image')->store('projects');
+        };
+        $project->update([
+            'name'        => $request->name,
+            'skill_id'    => $request->skill_id,
+            'project_url' => $request->project_url,
+            'image'       =>$image,
+        ]);
+        return redirect::route('projects.index')->with('message','Project Updated successfully.');
     }
 
     /**
@@ -105,8 +123,12 @@ class projectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(project $project)
     {
-        //
+        Storage::delete($project->image);
+        $project->delete();
+
+        return Redirect::back()->with('message','Project Deleted successfully.');
     }
+   
 }

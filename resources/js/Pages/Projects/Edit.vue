@@ -62,8 +62,8 @@
 
             <div class="flex items-center justify-end mt-4">
                 <PrimaryButton
-                 class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                   Store
+                 class="ml-4">
+                  Update
                 </PrimaryButton>
             </div>
          </form>
@@ -80,21 +80,31 @@ import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
+import { Inertia } from '@inertiajs/inertia';
 
-defineProps({
+const props =defineProps({
     skills: Array,
     project: Object,
 });
 
 const form = useForm({
-    name: "",
+    name: props.project?.name,
     image: null,
-    skill_id:"",
-    project_url:"",
+    skill_id: props.project?.skill_id,
+   project_url: props.project?.project_url,
+
 });
 
+
+
 const submit = () => {
-    form.post(route('projects.store'));
+    Inertia.post(`/projects/${props.project.id}`,{
+        _method:'put',
+        name:form.name,
+        image:form.image,
+        skill_id:form.skill_id,
+        project_url:form.project_url,
+    })
 };
  </script>
  
