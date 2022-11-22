@@ -25,10 +25,10 @@ h6{
     @apply text-blue text-paragraph mb-16 lg:mb:-24 max-w-[520px];
  }
  .btn{
-    @apply py-4 px-6 font-medium text-slate-700 dark:text-white flex item-center justify-center rounded-sm hover:text-white hover:bg-accent-hover bg:accent transition-all;
+    @apply py-4 px-6 font-medium text-slate-700 dark:text-white flex items-center justify-center rounded-sm hover:text-white hover:bg-accent-hover bg-accent transition-all;
  }
  .btn-lg{
-    @apply h[54px];
+    @apply h-[54px];
  }
  .btn-md{
     @apply h-[48px];
