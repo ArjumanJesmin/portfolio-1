@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\projectController;
 use App\Http\Controllers\skillController;
+use App\Http\Controllers\welcomeController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -18,14 +19,7 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
+Route::get(['/',welcomeController::class,'welcome'])->name('welcome');
 
 
 Route::middleware(['auth','verified'])->group(function(){

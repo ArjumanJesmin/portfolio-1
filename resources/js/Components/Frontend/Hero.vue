@@ -11,7 +11,7 @@
             <h1 class="text-4xl leading-[44px] md:leading-light lg:text-7xl lg:leading-[1.2] font-bold md:tracking-[-2px]">
                 I Build & Design <br/> Web Interfaces.  
             </h1>
-            <p class="pt-4 ph-8 md:pt-6 max-w-[480px] text-lg text-center lg:text-left">
+            <p class="pt-4 pb-8 md:pt-6 md:pb-12 max-w-[480px] text-lg text-center lg:text-left">
                 This web is Imaging Design & update version. It's a wonderful light & dark color.
             </p>
             <Button class="btn btn-md bg-accent hover:bg-light-secondary hover:text-light-tail-500
@@ -19,7 +19,7 @@
                 Work with me
             </Button>
         </div>
-        <div class="flex flex-1 justify-end items-center h-full mt-8 md:mt-0 ">
+        <div class="flex flex-1 justify-end items-center  h-full mt-8 md:mt-0 ">
             <img class="rounded-lg" src="http://localhost/portfolio-1./public/img/hero.jpg" alt="Hero" />
         </div>
     </div>
