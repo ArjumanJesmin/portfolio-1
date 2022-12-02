@@ -31,9 +31,9 @@
                   {{ project.id }}
                 </th>
                 <td class="py-4 px-6">{{ project.name }}</td>
-
-                <td class="py-4 px-6">{{ project.skill}}</td>
-
+                <td class="py-4 px-6">{{ project.skill }}</td>
+                <!-- <td class="py-4 px-6">{{ project.skill.name }}</td> -->
+                   
                 <td class="py-4 px-6"><img :src="project.image" class="w-12 h-12 rounded-full" /></td>
 
                 <td class="py-4 px-6">
@@ -54,13 +54,15 @@
  </template>
  
  <script setup>
- import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head, Link } from '@inertiajs/inertia-vue3';
+ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
+ import { Head, Link } from "@inertiajs/inertia-vue3";
 
 
 defineProps({
     projects:Object,
+    skills:Object,
 });
+
  </script>
  
  

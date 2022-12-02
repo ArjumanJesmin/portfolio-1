@@ -19,7 +19,7 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 |
 */
 
-Route::get(['/',welcomeController::class,'welcome'])->name('welcome');
+Route::get(['/',welcomeController::class,'welcome'])->name['welcome'];
 
 
 Route::middleware(['auth','verified'])->group(function(){

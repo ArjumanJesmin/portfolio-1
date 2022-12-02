@@ -100,7 +100,7 @@ const form = useForm({
 
 const submit = () => {
     Inertia.post(`/projects/${props.project.id}`,{
-        _method:'put',
+        _method:"put",
         name:form.name,
         image:form.image,
         skill_id:form.skill_id,
