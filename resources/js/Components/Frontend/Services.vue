@@ -2,7 +2,7 @@
 
 </script>
 <template>
-   <section class="section bg-light-secondary dark:bg-dark-secondary">
+   <section id="services" class="section bg-light-secondary dark:bg-dark-secondary">
   <div class="container mx-auto">
     <div class="flex flex-col items-center text-center">
   <h2 class="section-title">What I do for clients</h2>

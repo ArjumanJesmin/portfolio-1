@@ -1,6 +1,6 @@
-<template>
+ <template>
     <section id="about" class="section bg-light-secondary dark:bg-dark-secondary ">
-        <div class="container">
+        <div class="container mx-auto">
             <div class="flex flex-col xl:flex-row gap-24">
                <img class="object-cover h-full w-[566px] md:mx-auto lg:mx-0 rounded-2xl"
                src="http://localhost/portfolio-1./public/img/about.jpg" 
@@ -26,13 +26,13 @@
         </div>
         </div>
     </section>
-</template>
+</template> 
 
 
 
 
 <!-- ====== About Section Start -->
-<!-- <section class="overflow-hidden pt-20 pb-12 lg:pt-[120px] lg:pb-[90px]">
+ <!-- <section class="overflow-hidden pt-20 pb-12 lg:pt-[120px] lg:pb-[90px]">
     <div class="container mx-auto">
       <div class="-mx-4 flex flex-wrap items-center justify-between">
         <div class="w-full px-4 lg:w-6/12">
@@ -663,4 +663,4 @@
       </div>
     </div>
   </section> -->
-  <!-- ====== About Section End -->
+  ====== About Section End

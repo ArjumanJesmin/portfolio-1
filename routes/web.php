@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\contactController;
 use App\Http\Controllers\projectController;
 use App\Http\Controllers\skillController;
 use App\Http\Controllers\welcomeController;
@@ -20,6 +21,7 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 */
 
 Route::get(['/',welcomeController::class,'welcome'])->name['welcome'];
+Route::post('/contact',contactController::class)->name('contact');
 
 
 Route::middleware(['auth','verified'])->group(function(){

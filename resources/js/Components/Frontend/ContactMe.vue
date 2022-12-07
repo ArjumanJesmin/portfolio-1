@@ -1,9 +1,45 @@
 <script setup>
+import { ref } from "vue";
+import { useForm } from "@inertiajs/inertia-vue3";
 
+const showMassage = ref(false);
+
+const form =useForm({
+    name:"",
+    email:"",
+    body:"",
+});
+
+function setMassage(value){
+    showMassage.value = value;
+}
+
+function clearForm(){
+    form.reset();
+    setMassage(true)
+    setTimeout(() => setMassage(false),2000 )
+}
+
+const submit = () => {
+    form.post(route('contact'),{
+        preserveScroll: true,
+        onSuccess: () =>clearForm(),
+    });
+}
 </script>
 <template>
-   <section class="section bg-light-primary dark:bg-dark-primary">
-<div class="container mx-auto">
+   <section id="contact" class="section bg-light-primary dark:bg-dark-primary">
+<div class="container mx-auto"
+v-motion
+:initial="{
+    opacity:0,
+    y: 100,
+}"
+:visible="{
+    opacity:1,
+    y:0,
+}"
+>
     <div class="flex flex-col items-center text-center">
         <h2 class="section-title">Contact Me</h2>
         <p class="subtitle">
@@ -42,19 +78,22 @@
         </div>
     </div>
 </div>
-<form class="space-y-8 w-full max-w-md">
+<form @submit.prevent="submit" class="space-y-8 w-full max-w-md">
+    <div v-if ="showMassage"
+     class="m-2 p-4 bg-light-tail-500 text-light-secondary rounded-lg">Thank you for contact me.</div>
     <div class="flex gap-8">
       <div>
-      <input type="text" class="input" placeholder="Your Name"/>
-      <span class="text-sm m-2 text-red-400">Error</span>
+      <input v-model="form.name" type="text" class="input" placeholder="Your Name"/>
+      <span v-if="form.errors.name" class="text-sm m-2 text-red-400">{{ form.errors.name }}</span>
     </div>
     <div>
-     <input type="email" class="input" placeholder="Your Email"/>
-     <span class="text-sm m-2 text-red-400">Error</span>
+     <input v-model="form.email" type="email" class="input" placeholder="Your Email"/>
+     <span v-if="form.errors.email" class="text-sm m-2 text-red-400">{{ form.errors.email }}</span>
     </div>
 </div> 
-<textarea class="textarea" placeholder="Your Massage" spellcheck="false"></textarea>
-<span class="text-sm m-2 text-red-400">Error</span>
+<textarea v-model="form.body"
+ class="textarea" placeholder="Your Massage" spellcheck="false"></textarea>
+ <span v-if="form.errors.body" class="text-sm m-2 text-red-400">{{ form.errors.body }}</span>
 <button class="btn btn-lg bg-accent hover:bg-secondary text-white" >Send Massage</button>
 </form>
 </div>
