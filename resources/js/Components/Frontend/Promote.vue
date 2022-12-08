@@ -1,6 +1,6 @@
 <template>
 <!-- ====== Call To Action Section Start -->
-<section class="py-20 lg:py-[120px]">
+<section >
   <div class="container-flex mx-auto">
     <div
       class="bg-light-tail-100 dark:bg-dark-navy-500 relative z-10 overflow-hidden rounded py-12 px-8 md:p-[70px]"
